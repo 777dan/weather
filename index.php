@@ -50,10 +50,10 @@
         }
         $weatherData = json_decode(file_get_contents("https://api.openweathermap.org/data/2.5/weather?q=" . $_GET['locations'] . ",$country&APPID=$code"));
         $temperature = json_decode(file_get_contents("https://api.openweathermap.org/data/2.5/weather?q=" . $_GET['locations'] . ",$country&APPID=$code&units=metric"));
-        echo "Страна: " . $temperature->sys->country, "\n<br>";
+        echo "Страна: " . $weatherData->sys->country, "\n<br>";
         echo "Населённый пункт: " . $weatherData->name, "\n<br>";
-        echo "Температура: " . round(((($weatherData->main->temp) - 32) / 1.8), 1), " &#8451;\n<br>";
-        echo "Температура чувствуется как: " . round(((($weatherData->main->feels_like) - 32) / 1.8), 1), "  &#8451;\n<br>";
+        echo "Температура: " . round(((($temperature->main->temp) - 32) / 1.8), 1), " &#8451;\n<br>";
+        echo "Температура чувствуется как: " . round(((($temperature->main->feels_like) - 32) / 1.8), 1), "  &#8451;\n<br>";
         echo "Влажность: " . $weatherData->main->humidity, " %\n<br>";
         echo "Скорость ветра: " . $weatherData->wind->speed, " км/ч\n<br>";
         echo "Погода: " . $weatherData->weather[0]->main, "\n<br>";
